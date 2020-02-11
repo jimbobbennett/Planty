@@ -1,4 +1,4 @@
-import smbus2, bme280, time, os, asyncio, json
+import smbus2, bme280, time, os, asyncio, json, uuid
 from grove.grove_moisture_sensor import GroveMoistureSensor
 from grove.grove_light_sensor_v1_2 import GroveLightSensor
 from dotenv import load_dotenv
@@ -54,7 +54,8 @@ def getTelemetryData():
         "Temperature": round(temp_pressure_humidity.temperature, 2),
         "Light": round(light, 2),
         "SoilMoisture": round(moisture, 2),
-        "MoistureDescription": moisture_description
+        "MoistureDescription": moisture_description,
+        "id": str(uuid.uuid4())
     }
 
     return json.dumps(data)
